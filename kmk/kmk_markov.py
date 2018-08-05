@@ -2,13 +2,14 @@
 import random
 from collections import defaultdict
 from sys import argv
+from brooklyn import *
 
 WORD_SEP = ' '
 
 class MarkovName:
   def __init__(self):
       """ input file should have one name per line"""
-      markov_file = open('sim2.txt', 'r')
+      markov_file = mostRelated
       # markov chain is a dictionary from {(letter) to list-of-letters-seen-after}
       # {c: 'aaoehhhhh   '}
       self.chain = defaultdict(list)
@@ -27,16 +28,19 @@ class MarkovName:
       while not (current == WORD_SEP and name):
        current = random.choice(self.chain[current])
        name.append(current)
-
       return ''.join(name).strip().capitalize()
 
 chain = MarkovName()
 name = chain.generate_name()
 #print(name)
 
-def count_length(name):
-      n_length = []
-      if len(name) > 1 and len(name) < 10: 
-              n_length.append(name)
-      return n_length
-print(count_length(name))
+''' if __name__ == '__main__':
+      chain = MarkovName()
+      name = ''
+      while len(name) < 4 or len(name) > 8:
+        name = chain.generate_name() '''
+#print(name)
+
+
+
+
